@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { HomeOutlined } from "@ant-design/icons";
+import { Space } from "antd";
 import { Layout, Menu } from "antd";
 import React from "react";
 import "./Navbar.css";
@@ -10,9 +11,13 @@ const Navbar = (props) => {
     <Layout className="layout custom-style">
       <Header>
         <div className="logo">
-          <FontAwesomeIcon icon="fa-solid fa-store" />
           <Link to="/">
-            <h1 style={{ color: "white" }}>Sneaker Store</h1>
+            <Space>
+              <h1 style={{ color: "white" }}>
+                <HomeOutlined style={{ color: "white", padding: "5px" }} />
+                Sneaker Store
+              </h1>
+            </Space>
           </Link>
         </div>
         <Menu

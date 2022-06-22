@@ -1,3 +1,14 @@
 .box-design {
   padding: 15px;
 }
+.starDiv {
+  padding: 5px 0px;
+}
+.addCartBtn {
+  color: "white !important";
+  background-color: "black !important";
+}
+.starIcons {
+  font-size: "20px";
+  color: "orange";
+}
