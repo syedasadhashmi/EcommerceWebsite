@@ -11,7 +11,9 @@ const Navbar = (props) => {
       <Header>
         <div className="logo">
           <FontAwesomeIcon icon="fa-solid fa-store" />
-          <Link to="/">Shoe Store</Link>
+          <Link to="/">
+            <h1 style={{ color: "white" }}>Sneaker Store</h1>
+          </Link>
         </div>
         <Menu
           theme="dark"
