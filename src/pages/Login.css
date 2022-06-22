@@ -1,0 +1,17 @@
+@import "~antd/dist/antd.css";
+.form-center {
+  padding-top: 50px;
+  width: 50%;
+  margin: auto;
+}
+.form-style {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  /* padding-right: 134px; */
+  width: 75%;
+}
+.h3-center {
+  display: flex;
+  justify-content: center;
+}
