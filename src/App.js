@@ -4,6 +4,7 @@ import Register from "./pages/Register";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/UI/Navbar";
 import Details from "./components/users/Details";
+import Home from "./pages/Home";
 // import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
@@ -37,6 +38,9 @@ function App() {
         <Navbar />
         <div>
           <Switch>
+            <Route exact path="/">
+              <Home />
+            </Route>
             <Route exact path="/Login">
               <Login />
             </Route>

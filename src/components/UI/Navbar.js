@@ -11,14 +11,17 @@ const Navbar = (props) => {
       <Header>
         <div className="logo">
           <FontAwesomeIcon icon="fa-solid fa-store" />
-          <Link to="/Login">Shoe Store</Link>
+          <Link to="/">Shoe Store</Link>
         </div>
         <Menu
           theme="dark"
           mode="horizontal"
-          defaultSelectedKeys={["login"]}
           style={{ float: "right" }}
+          defaultSelectedKeys={[""]}
         >
+          <Menu.Item key="/">
+            <Link to="/">Home</Link>
+          </Menu.Item>
           <Menu.Item key="cart">Cart</Menu.Item>
           <Menu.Item key="login">
             <Link to="/Login">Login</Link>
@@ -26,7 +29,6 @@ const Navbar = (props) => {
           <Menu.Item key="register">
             <Link to="/Register">Register</Link>
           </Menu.Item>
-          <Menu.Item key="admin">Admin</Menu.Item>
         </Menu>
       </Header>
     </Layout>
