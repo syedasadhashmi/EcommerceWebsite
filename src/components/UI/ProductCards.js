@@ -1,5 +1,4 @@
-import { Card, Col, Row } from "antd";
-import { Button } from "antd";
+import { Button, Card, Col, Row } from "antd";
 import { StarFilled, StarOutlined } from "@ant-design/icons";
 import "./ProductCards.css";
 

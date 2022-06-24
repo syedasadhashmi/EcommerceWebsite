@@ -1,8 +1,31 @@
 import { Button, Checkbox, Form, Input } from "antd";
+// import { useState } from "react";
 import "./Login.css";
 const Register = () => {
+  // const [emailAddress, setEmailAddress] = useState("");
+  // const [username, setUsername] = useState("");
+  // const [password, setPassword] = useState("");
+
+  // const emailAddressHandler = (e) => {
+  //   setEmailAddress(e.target.value);
+  // };
+  // const usernameHandler = (e) => {
+  //   setUsername(e.target.value);
+  // };
+  // const passwordHandler = (e) => {
+  //   setPassword(e.target.value);
+  // };
+
   const onFinish = (values) => {
-    console.log("Success:", values);
+    if (
+      values.emailAddress.trim().includes("@") &&
+      values.password.trim().length > 7
+    ) {
+      console.log("valid email & password");
+    } else {
+      console.log("invalid email");
+    }
+    console.log(values);
   };
 
   const onFinishFailed = (errorInfo) => {
