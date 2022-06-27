@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 
 const ProductCards = () => {
   const { shoes } = useSelector((shoes) => shoes.productsReducer);
-  console.log(shoes.length);
+  // console.log(shoes.length);
   const dispatch = useDispatch();
   return (
     <div className="box-design">

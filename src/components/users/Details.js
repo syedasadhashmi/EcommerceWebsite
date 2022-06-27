@@ -1,14 +1,15 @@
-import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux/es/exports';
-import { useEffect } from 'react';
+import { useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux/es/exports";
+import { useEffect } from "react";
+import "./Details.css";
 
 const Details = (props) => {
   const { id } = useParams();
   const dispatch = useDispatch();
   const { details } = useSelector((shoes) => shoes.productsReducer);
-  console.log(details);
+  // console.log(details);
   useEffect(() => {
-    dispatch({ type: 'DETAILS', id: id });
+    dispatch({ type: "DETAILS", id: id });
   }, [id]);
   return (
     <div>
@@ -16,6 +17,7 @@ const Details = (props) => {
         {details.name}
         {id}
       </h1>
+      <img src={details.img} className="detailsImg" />
       <p>{details.desc}</p>
     </div>
   );
