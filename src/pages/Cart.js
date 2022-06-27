@@ -1,11 +1,12 @@
-import React, { useState } from "react";
-import { useSelector } from "react-redux";
-import "./Cart.css";
+import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import './Cart.css';
 
 const Cart = () => {
   const [number, setNumber] = useState(1);
   const [bill, setBill] = useState(0);
   const { cart, totalPrice } = useSelector((state) => state.cartReducer);
+  const dispatch = useDispatch();
   //   console.log(cart.length);
 
   //   billHandler();
@@ -14,9 +15,7 @@ const Cart = () => {
   let cartArr = [];
   cartArr.push(cart);
   //   console.log(cartArr);
-  const incrementHanndler = () => {
-    setNumber(number + 1);
-  };
+
   const decrementHanndler = () => {
     setNumber(number - 1);
   };
@@ -40,11 +39,15 @@ const Cart = () => {
             <tr key={items.id}>
               <td>{i + 1}</td>
               <td>
-                <img src={items.img} className={"cartImage"} alt={items.name} />
+                <img src={items.img} className={'cartImage'} alt={items.name} />
               </td>
               <td>{items.name}</td>
               <td>
-                <button onClick={incrementHanndler}>+</button>
+                <button
+                  onClick={() => dispatch({ type: 'INC', payload: items.id })}
+                >
+                  +
+                </button>
                 {number}
                 <button onClick={decrementHanndler}>-</button>
               </td>

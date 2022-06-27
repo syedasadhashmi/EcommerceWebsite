@@ -7,8 +7,10 @@ const initialState = {
 const cartReducer = (state = initialState, action) => {
   // const { items } = action.payload;
   // console.log(items);
+  let index;
+  let findPro;
   switch (action.type) {
-    case "ADD_TO_CART":
+    case 'ADD_TO_CART':
       const tempCart = initialState.cart;
       tempCart.push(action.payload.items);
       const tprice = initialState.totalPrice + action.payload.items.price;
@@ -19,19 +21,18 @@ const cartReducer = (state = initialState, action) => {
         cart: tempCart,
         totalPrice: tprice,
       };
-    //   console.log(action.payload.items);
-    // const tprice = state.totalPrice + action.payload.items.price;
-    // console.log(tprice);
-    // console.log(state);
-    // console.log(state.cart.push(...state, action.payload.items));
-    // return {
-    // ...state,
-    // cart: [...state.cart, action.payload.items],
-    // cart: state.cart.push(action.payload.items),
-    // cart: [...state.cart, action.payload.items],
-
-    // totalPrice: tprice,
-    // };
+    case 'INC':
+      findPro = initialState.cart.find((items) => items.id === action.payload);
+      index = initialState.cart.findIndex(
+        (items) => items.id === action.payload
+      );
+      findPro.totalQuantity += 1;
+      initialState.cart[index] = findPro;
+      return {
+        ...initialState,
+        totalPrice: initialState.totalPrice,
+        totalQuantity: initialState.totalQuantity + 1,
+      };
 
     default:
       return {
