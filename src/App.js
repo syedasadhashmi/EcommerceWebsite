@@ -5,6 +5,9 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import Navbar from "./components/UI/Navbar";
 import Details from "./components/users/Details";
 import Home from "./pages/Home";
+import { Provider } from "react-redux";
+import store from "./redux/store";
+import Cart from "./pages/Cart";
 // import { Link } from "react-router-dom/cjs/react-router-dom.min";
 
 function App() {
@@ -26,7 +29,8 @@ function App() {
   // ];
   return (
     <Router>
-      {/* {obj.map((items) => (
+      <Provider store={store}>
+        {/* {obj.map((items) => (
         <div key={items.id}>
           <h1>{items.name}</h1>
           <Link to={`/Details/${items.id}`} props={items.description}>
@@ -34,25 +38,29 @@ function App() {
           </Link>
         </div>
       ))} */}
-      <div>
-        <Navbar />
         <div>
-          <Switch>
-            <Route exact path="/">
-              <Home />
-            </Route>
-            <Route exact path="/Login">
-              <Login />
-            </Route>
-            <Route exact path="/Register">
-              <Register />
-            </Route>
-            <Route exact path="/Details/:id">
-              <Details />
-            </Route>
-          </Switch>
+          <Navbar />
+          <div>
+            <Switch>
+              <Route exact path="/">
+                <Home />
+              </Route>
+              <Route exact path="/Cart">
+                <Cart />
+              </Route>
+              <Route exact path="/Login">
+                <Login />
+              </Route>
+              <Route exact path="/Register">
+                <Register />
+              </Route>
+              <Route exact path="/Details/:id">
+                <Details />
+              </Route>
+            </Switch>
+          </div>
         </div>
-      </div>
+      </Provider>
     </Router>
   );
 }

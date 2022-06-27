@@ -28,7 +28,9 @@ const Navbar = (props) => {
           <Menu.Item key="/">
             <Link to="/">Home</Link>
           </Menu.Item>
-          <Menu.Item key="cart">Cart</Menu.Item>
+          <Menu.Item key="cart">
+            <Link to="/Cart">Cart</Link>
+          </Menu.Item>
           <Menu.Item key="login">
             <Link to="/Login">Login</Link>
           </Menu.Item>

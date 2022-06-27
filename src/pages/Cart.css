@@ -1,0 +1,15 @@
+.customTable {
+  width: 100%;
+  border: 1px solid;
+}
+.containerCart {
+  padding: 12px;
+}
+tr,
+td {
+  border: 1px solid;
+  padding: 5px;
+}
+.cartImage {
+  width: 150px;
+}
