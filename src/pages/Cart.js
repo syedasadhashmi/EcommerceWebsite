@@ -7,13 +7,7 @@ const Cart = () => {
   const [bill, setBill] = useState(0);
   const { cart, totalPrice } = useSelector((state) => state.cartReducer);
   //   console.log(cart.length);
-  const billHandler = () => {
-    let pr = 0;
-    cart.map((items) => {
-      pr += items.price;
-    });
-    return setBill(pr);
-  };
+
   //   billHandler();
   console.log(cart);
   console.log(totalPrice);
