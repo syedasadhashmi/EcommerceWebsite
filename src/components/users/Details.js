@@ -17,7 +17,7 @@ const Details = (props) => {
         {details.name}
         {id}
       </h1>
-      <img src={details.img} className="detailsImg" />
+      <img src={details.img} className="detailsImg" alt={details.name} />
       <p>{details.desc}</p>
     </div>
   );
