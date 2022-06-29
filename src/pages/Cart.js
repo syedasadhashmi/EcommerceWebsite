@@ -1,4 +1,4 @@
-import React from "react";
+// import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import "./Cart.css";
 import { Space, Table, Button } from "antd";
@@ -11,6 +11,16 @@ const Cart = () => {
   console.log(cart);
   console.log(shoes);
   const dispatch = useDispatch();
+  // useEffect(() => {
+  //   if (cart.length) {
+  //     setBill(() => {
+  //       cart.map((items) => {
+  //         bill += items.price;
+  //         return bill;
+  //       });
+  //     });
+  //   }
+  // }, [bill]);
 
   const columns = [
     {
@@ -46,7 +56,13 @@ const Cart = () => {
               +
             </Button>
             <span>{e}</span>
-            <Button>-</Button>
+            <Button
+              onClick={() =>
+                dispatch({ type: "DECREMENT", payload: { record } })
+              }
+            >
+              -
+            </Button>
           </>
         );
       },
@@ -54,10 +70,12 @@ const Cart = () => {
     {
       title: "Action",
       key: "action",
-      render: (_, record) => (
-        <Space size="middle">
-          <a>Delete</a>
-        </Space>
+      render: (e, record) => (
+        <Button
+          onClick={() => dispatch({ type: "DELETE", payload: { record } })}
+        >
+          Delete
+        </Button>
       ),
     },
   ];
@@ -77,6 +95,8 @@ const Cart = () => {
     <div className="containerCart">
       <h1>Shopping Cart</h1>
       <Table rowKey={"id"} columns={columns} dataSource={cart} />
+      {/* <button onClick={dispatch({ type: "CLEARALL" })}>Clear All</button> */}
+      {/* <h1>Total Bill: {bill}</h1> */}
       {/* <h1>Shoping Cart</h1>
       <table className="customTable">
         <thead>

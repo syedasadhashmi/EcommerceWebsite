@@ -47,7 +47,7 @@ const initialState = {
     {
       id: 5,
       stock: 5,
-      quantity: 11,
+      quantity: 1,
       name: "Caterpillar",
       price: 15,
       // img: "img5",
