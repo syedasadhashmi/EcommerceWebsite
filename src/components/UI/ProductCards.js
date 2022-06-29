@@ -1,8 +1,9 @@
-import { Button, Card, Col, Row } from "antd";
-import { StarFilled, StarOutlined } from "@ant-design/icons";
-import { useSelector, useDispatch } from "react-redux/es/exports";
-import "./ProductCards.css";
-import { Link } from "react-router-dom";
+import { Button, Card, Col, Row } from 'antd';
+import { StarFilled, StarOutlined } from '@ant-design/icons';
+import { useSelector, useDispatch } from 'react-redux/es/exports';
+import { addToCart } from '../../redux/cart/cartActions';
+import './ProductCards.css';
+import { Link } from 'react-router-dom';
 
 const ProductCards = () => {
   const { shoes } = useSelector((shoes) => shoes.productsReducer);
@@ -30,11 +31,11 @@ const ProductCards = () => {
               style={{
                 //     width: 300,
                 height: 400,
-                marginBottom: "20px",
+                marginBottom: '20px',
               }}
               cover={
                 <img
-                  style={{ height: "190px" }}
+                  style={{ height: '190px' }}
                   alt={items.name}
                   // src\assets\images\card\img1.jpeg
                   src={items.img}
@@ -45,21 +46,16 @@ const ProductCards = () => {
                 <h1>{items.name}</h1>
                 <h2>${items.price}</h2>
                 <div className="starDiv">
-                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
-                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
-                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
-                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
-                  <StarOutlined style={{ fontSize: "20px", color: "orange" }} />
+                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
+                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
+                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
+                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
+                  <StarOutlined style={{ fontSize: '20px', color: 'orange' }} />
                 </div>
                 <Button
                   type="button"
-                  style={{ color: "white", background: "black" }}
-                  onClick={() =>
-                    dispatch({
-                      type: "ADD_TO_CART",
-                      payload: { items },
-                    })
-                  }
+                  style={{ color: 'white', background: 'black' }}
+                  onClick={() => dispatch(addToCart({ items }))}
                 >
                   Add To Cart
                 </Button>
@@ -67,7 +63,7 @@ const ProductCards = () => {
                 <Link to={`/details/${items.id}`}>
                   <Button
                     type="button"
-                    style={{ color: "black", background: "white" }}
+                    style={{ color: 'black', background: 'white' }}
                   >
                     Details
                   </Button>

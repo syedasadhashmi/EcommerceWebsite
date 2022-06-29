@@ -1,7 +1,8 @@
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux/es/exports";
-import { useEffect } from "react";
-import "./Details.css";
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux/es/exports';
+import { useEffect } from 'react';
+import { detail } from '../../redux/products/productAction';
+import './Details.css';
 
 const Details = (props) => {
   const { id } = useParams();
@@ -9,7 +10,7 @@ const Details = (props) => {
   const { details } = useSelector((shoes) => shoes.productsReducer);
   // console.log(details);
   useEffect(() => {
-    dispatch({ type: "DETAILS", id: id });
+    dispatch(detail(id));
   }, [id]);
   return (
     <div>

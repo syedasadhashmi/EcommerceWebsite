@@ -1,3 +1,4 @@
+import { ADD_TO_CART, INCREMENT, DECREMENT } from './cartTypes';
 const initialState = {
   cart: [],
   totalPrice: 0,
@@ -13,7 +14,7 @@ const cartReducer = (state = initialState, action) => {
   let mPrice;
   let tQ;
   switch (action.type) {
-    case "ADD_TO_CART":
+    case ADD_TO_CART:
       const tempCart = initialState.cart;
       tempCart.push(action.payload.items);
 
@@ -37,7 +38,7 @@ const cartReducer = (state = initialState, action) => {
         totalPrice: tPrice,
         totalQuantity: tQuantity,
       };
-    case "INCREMENT":
+    case INCREMENT:
       // console.log(action.payload.record.id);
       // console.log(initialState.cart);
       // initialState.cart.map((cartItems) => {
@@ -77,7 +78,7 @@ const cartReducer = (state = initialState, action) => {
         totalPrice: tPrice,
         totalQuantity: tQ,
       };
-    case "DECREMENT":
+    case DECREMENT:
       findPro = initialState.cart.find(
         (items) => items.id === action.payload.record.id
       );
@@ -106,7 +107,7 @@ const cartReducer = (state = initialState, action) => {
         totalPrice: mPrice,
         // totalQuantity: initialState.totalQuantity - 1,
       };
-    case "DELETE":
+    case 'DELETE':
       index = initialState.cart.findIndex(
         (items) => items.id === action.payload.record.id
       );
@@ -115,7 +116,7 @@ const cartReducer = (state = initialState, action) => {
         if (index) {
           console.log(i);
         } else {
-          console.log("nnot exist");
+          console.log('nnot exist');
         }
       });
 
