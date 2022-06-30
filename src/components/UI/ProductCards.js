@@ -63,7 +63,7 @@ const ProductCards = () => {
                   <Button
                     type="button"
                     style={{ color: "white", background: "black" }}
-                    onClick={() => dispatch(addToCart({ items }))}
+                    onClick={() => dispatch(addToCart({ items: { ...items } }))}
                   >
                     Add To Cart
                   </Button>

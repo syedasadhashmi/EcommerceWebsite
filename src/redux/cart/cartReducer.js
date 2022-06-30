@@ -121,6 +121,7 @@ const cartReducer = (state = initialState, action) => {
       const temp = state.cart.filter(
         (items) => items.id !== action.payload.record.id
       );
+
       return {
         ...state,
         cart: temp,
