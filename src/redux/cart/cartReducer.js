@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT } from "./cartTypes";
+import { ADD_TO_CART, INCREMENT, DECREMENT, DELETE } from "./cartTypes";
 const initialState = {
   cart: [],
   totalPrice: 0,
@@ -11,17 +11,16 @@ const cartReducer = (state = initialState, action) => {
   let index;
   let findPro;
   let tPrice;
-  let mPrice;
   let tQ;
   switch (action.type) {
     case ADD_TO_CART:
-      const tempCart = initialState.cart;
+      const tempCart = state.cart;
       tempCart.push(action.payload.items);
 
-      findPro = initialState.cart.find(
+      findPro = state.cart.find(
         (items) => items.id === action.payload.items.id
       );
-      index = initialState.cart.findIndex(
+      index = state.cart.findIndex(
         (items) => items.id === action.payload.items.id
       );
       const tQuantity = findPro.quantity;
@@ -33,7 +32,7 @@ const cartReducer = (state = initialState, action) => {
       // console.log(tprice);
 
       return {
-        ...initialState,
+        ...state,
         cart: tempCart,
         totalPrice: tPrice,
         totalQuantity: tQuantity,
@@ -50,84 +49,88 @@ const cartReducer = (state = initialState, action) => {
       //   }
       // });
 
-      findPro = initialState.cart.find(
+      findPro = state.cart.find(
         (items) => items.id === action.payload.record.id
       );
       // console.log(findPro);
-      index = initialState.cart.findIndex(
+      index = state.cart.findIndex(
         (items) => items.id === action.payload.record.id
       );
-      // const a = findPro.price;
-
-      // console.log(a);
-      // const singleAmount = a;
-      // console.log(singleAmount);
-      // console.log(findPro.price);
-      // console.log(index);
-      findPro.quantity += 1;
-      // initialState.totalQuantity = findPro.quantity;
-      initialState.totalQuantity += 1;
-      tQ = initialState.totalQuantity;
-      tPrice = findPro.price * findPro.quantity;
-      findPro.price = tPrice;
-      initialState.cart[index] = findPro;
-      // console.log(findPro);
+      console.log(findPro.stock);
+      if (findPro.quantity < findPro.stock) {
+        findPro.quantity += 1;
+        state.totalQuantity = findPro.quantity;
+        // initialState.totalQuantity += 1;
+        tQ = state.totalQuantity;
+        tPrice = findPro.price * findPro.quantity;
+        findPro.price = tPrice;
+        state.cart[index] = findPro;
+        // console.log(findPro);
+      } else {
+        return {
+          ...state,
+        };
+      }
 
       return {
-        ...initialState,
+        ...state,
         totalPrice: tPrice,
         totalQuantity: tQ,
       };
     case DECREMENT:
-      findPro = initialState.cart.find(
+      findPro = state.cart.find(
         (items) => items.id === action.payload.record.id
       );
       // console.log(findPro.quantity > 0);
-      index = initialState.cart.findIndex(
+      index = state.cart.findIndex(
         (items) => items.id === action.payload.record.id
       );
 
       // console.log(index);
-      findPro.quantity -= 1;
-      initialState.totalQuantity = findPro.quantity;
+      if (findPro.quantity > 1) {
+        findPro.quantity -= 1;
+        state.totalQuantity = findPro.quantity;
+        // initialState.totalQuantity += 1;
+        tQ = state.totalQuantity;
+        tPrice = findPro.price / findPro.quantity;
+        findPro.price = tPrice;
+        state.cart[index] = findPro;
+        // findPro.quantity -= 1;
+        // initialState.totalQuantity = findPro.quantity;
+        // mPrice = findPro.price / findPro.quantity;
 
-      mPrice = findPro.price / findPro.quantity;
+        // console.log(findPro.price);
+        // console.log(findPro.quantity);
+        // console.log(mPrice);
+        // console.log(initialState.cart[index].totalQuantity);
+        // console.log(tPrice);
 
-      // console.log(findPro.price);
-      // console.log(findPro.quantity);
-      // console.log(mPrice);
-      // console.log(initialState.cart[index].totalQuantity);
-      // console.log(tPrice);
-      findPro.price = mPrice;
-      initialState.cart[index] = findPro;
-      // console.log(findPro);
-
+        // findPro.price = mPrice;
+        // initialState.cart[index] = findPro;
+      } else {
+        return {
+          ...state,
+        };
+      }
       return {
-        ...initialState,
-        totalPrice: mPrice,
-        // totalQuantity: initialState.totalQuantity - 1,
+        ...state,
+        totalPrice: tPrice,
+        totalQuantity: tQ,
       };
-    case "DELETE":
-      index = initialState.cart.findIndex(
-        (items) => items.id === action.payload.record.id
+    case DELETE:
+      const temp = state.cart.filter(
+        (items) => items.id !== action.payload.record.id
       );
-      // console.log(index);
-      initialState.cart.filter((i) => {
-        if (index) {
-          console.log(i);
-        } else {
-          console.log("nnot exist");
-        }
-      });
-
-      // return {
-      //   cart: temp,
-      // };
-      break;
+      return {
+        ...state,
+        cart: temp,
+        totalPrice: 0,
+        totalQuantity: 0,
+      };
 
     default:
       return {
-        ...initialState,
+        ...state,
       };
   }
 };

@@ -55,7 +55,7 @@ const ProductCards = () => {
                     type="button"
                     disabled
                     style={{ color: "black", background: "orange" }}
-                    onClick={() => dispatch(addToCart({ items }))}
+                    // onClick={() => dispatch(addToCart({ items }))}
                   >
                     Added To Cart
                   </Button>
@@ -68,7 +68,6 @@ const ProductCards = () => {
                     Add To Cart
                   </Button>
                 )}
-
                 <Link to={`/details/${items.id}`}>
                   <Button
                     type="button"
