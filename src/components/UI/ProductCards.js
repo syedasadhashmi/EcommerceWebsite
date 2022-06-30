@@ -1,25 +1,13 @@
-import { Button, Card, Col, Row } from 'antd';
-import { StarFilled, StarOutlined } from '@ant-design/icons';
-import { useSelector, useDispatch } from 'react-redux/es/exports';
-import { addToCart } from '../../redux/cart/cartActions';
-import './ProductCards.css';
-import { Link } from 'react-router-dom';
+import { Button, Card, Col, Row } from "antd";
+import { StarFilled, StarOutlined } from "@ant-design/icons";
+import { useSelector, useDispatch } from "react-redux/es/exports";
+import { addToCart } from "../../redux/cart/cartActions";
+import "./ProductCards.css";
+import { Link } from "react-router-dom";
 
 const ProductCards = () => {
   const { shoes } = useSelector((shoes) => shoes.productsReducer);
   const { cart } = useSelector((state) => state.cartReducer);
-  console.log(cart);
-  // const disableButtonCheck = () => {
-  //   cart.map((cartItems) => {
-  //     if (cartItems.id !== shoes.id) {
-  //       console.log("item not included");
-  //     } else {
-  //       console.log("item is in cart");
-  //     }
-  //   });
-  // };
-  // disableButtonCheck();
-  // console.log(shoes.length);
   const dispatch = useDispatch();
   return (
     <div className="box-design">
@@ -31,11 +19,11 @@ const ProductCards = () => {
               style={{
                 //     width: 300,
                 height: 400,
-                marginBottom: '20px',
+                marginBottom: "20px",
               }}
               cover={
                 <img
-                  style={{ height: '190px' }}
+                  style={{ height: "190px" }}
                   alt={items.name}
                   // src\assets\images\card\img1.jpeg
                   src={items.img}
@@ -46,24 +34,45 @@ const ProductCards = () => {
                 <h1>{items.name}</h1>
                 <h2>${items.price}</h2>
                 <div className="starDiv">
-                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
-                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
-                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
-                  <StarFilled style={{ fontSize: '20px', color: 'orange' }} />
-                  <StarOutlined style={{ fontSize: '20px', color: 'orange' }} />
+                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
+                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
+                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
+                  <StarFilled style={{ fontSize: "20px", color: "orange" }} />
+                  <StarOutlined style={{ fontSize: "20px", color: "orange" }} />
                 </div>
-                <Button
-                  type="button"
-                  style={{ color: 'white', background: 'black' }}
-                  onClick={() => dispatch(addToCart({ items }))}
-                >
-                  Add To Cart
-                </Button>
+                {/* {items.stock === 0 && (
+                  <Button
+                    type="button"
+                    disabled
+                    style={{ color: "black", background: "orange" }}
+                    onClick={() => dispatch(addToCart({ items }))}
+                  >
+                    Out Of Stock
+                  </Button>
+                )} */}
+                {cart.some((x) => x.id === items.id) ? (
+                  <Button
+                    type="button"
+                    disabled
+                    style={{ color: "black", background: "orange" }}
+                    onClick={() => dispatch(addToCart({ items }))}
+                  >
+                    Added To Cart
+                  </Button>
+                ) : (
+                  <Button
+                    type="button"
+                    style={{ color: "white", background: "black" }}
+                    onClick={() => dispatch(addToCart({ items }))}
+                  >
+                    Add To Cart
+                  </Button>
+                )}
 
                 <Link to={`/details/${items.id}`}>
                   <Button
                     type="button"
-                    style={{ color: 'black', background: 'white' }}
+                    style={{ color: "black", background: "white" }}
                   >
                     Details
                   </Button>

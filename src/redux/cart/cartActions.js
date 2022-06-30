@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT } from './cartTypes';
+import { ADD_TO_CART, INCREMENT, DECREMENT } from "./cartTypes";
 
 export const addToCart = (items) => {
   return {

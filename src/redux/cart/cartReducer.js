@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT } from './cartTypes';
+import { ADD_TO_CART, INCREMENT, DECREMENT } from "./cartTypes";
 const initialState = {
   cart: [],
   totalPrice: 0,
@@ -68,7 +68,7 @@ const cartReducer = (state = initialState, action) => {
       // initialState.totalQuantity = findPro.quantity;
       initialState.totalQuantity += 1;
       tQ = initialState.totalQuantity;
-      tPrice = findPro.price * initialState.totalQuantity;
+      tPrice = findPro.price * findPro.quantity;
       findPro.price = tPrice;
       initialState.cart[index] = findPro;
       // console.log(findPro);
@@ -107,7 +107,7 @@ const cartReducer = (state = initialState, action) => {
         totalPrice: mPrice,
         // totalQuantity: initialState.totalQuantity - 1,
       };
-    case 'DELETE':
+    case "DELETE":
       index = initialState.cart.findIndex(
         (items) => items.id === action.payload.record.id
       );
@@ -116,7 +116,7 @@ const cartReducer = (state = initialState, action) => {
         if (index) {
           console.log(i);
         } else {
-          console.log('nnot exist');
+          console.log("nnot exist");
         }
       });
 
