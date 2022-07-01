@@ -1,7 +1,13 @@
 import { Button, Checkbox, Form, Input } from "antd";
+import { Modal } from "antd";
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { addUser } from "../redux/registration/registrationAction";
 // import { useState } from "react";
 import "./Login.css";
 const Register = () => {
+  // const { users } = useSelector((state) => state.registrationReducer);
+  const dispatch = useDispatch();
   // const [emailAddress, setEmailAddress] = useState("");
   // const [username, setUsername] = useState("");
   // const [password, setPassword] = useState("");
@@ -21,15 +27,21 @@ const Register = () => {
       values.emailAddress.trim().includes("@") &&
       values.password.trim().length > 7
     ) {
-      console.log("valid email & password");
+      dispatch(addUser({ values }));
+      // values.username = " ";
+      // values.emailAddress = " ";
+      // values.password = " ";
     } else {
-      console.log("invalid email");
+      onFinishFailed();
     }
     console.log(values);
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    Modal.error({
+      title: "Invalid Email or Password",
+      content: "Please enter valid email & Password > 7",
+    });
   };
 
   return (
@@ -106,7 +118,10 @@ const Register = () => {
             span: 16,
           }}
         >
-          <Button type="primary" htmlType="submit">
+          <Link to={"/Login"}>
+            <p>already have an account</p>
+          </Link>
+          <Button onSubmit={onFinish} htmlType="submit">
             Submit
           </Button>
         </Form.Item>

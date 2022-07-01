@@ -1,12 +1,41 @@
 import { Button, Checkbox, Form, Input } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { Modal } from "antd";
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./Login.css";
+import { loginFunc } from "../redux/registration/registrationAction";
+import { useState } from "react";
 const Login = () => {
+  const [status, setStatus] = useState(false);
+  const useDispatch = useDispatch();
+  const { users } = useSelector((state) => state.registrationReducer);
+  console.log(users);
   const onFinish = (values) => {
-    console.log("Success:", values);
+    const findPro = users.find(
+      (items) =>
+        items.emailAddress === values.username &&
+        items.password === values.password
+    );
+    if (findPro) {
+      setStatus(true);
+      // dispatch(loginFunc(status));
+    } else {
+      onFinishFailed();
+    }
+    // users.map((items) => {
+    //   if (items.emailAddress === values.username) {
+    //     console.log("match");
+    //   } else {
+    //     console.log("not match");
+    //   }
+    // });
   };
 
   const onFinishFailed = (errorInfo) => {
-    console.log("Failed:", errorInfo);
+    Modal.error({
+      title: "Error",
+      content: "Innvalid Email or Password",
+    });
   };
 
   return (
@@ -29,7 +58,7 @@ const Login = () => {
         autoComplete="off"
       >
         <Form.Item
-          label="Username"
+          label="Email Address"
           name="username"
           rules={[
             {
@@ -71,6 +100,9 @@ const Login = () => {
             span: 16,
           }}
         >
+          <Link to={"/Register"}>
+            <p>Want to register?</p>
+          </Link>
           <Button type="primary" htmlType="submit">
             Submit
           </Button>
