@@ -1,13 +1,13 @@
-import { Button, Checkbox, Form, Input } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { Modal } from "antd";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import "./Login.css";
-import { loginFunc } from "../redux/registration/registrationAction";
-import { useState } from "react";
+import { Button, Checkbox, Form, Input } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { Modal } from 'antd';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
+import './Login.css';
+import { loginFunc } from '../redux/registration/registrationAction';
+import { useState } from 'react';
 const Login = () => {
   const [status, setStatus] = useState(false);
-  const useDispatch = useDispatch();
+  const dispatch = useDispatch();
   const { users } = useSelector((state) => state.registrationReducer);
   console.log(users);
   const onFinish = (values) => {
@@ -18,7 +18,7 @@ const Login = () => {
     );
     if (findPro) {
       setStatus(true);
-      // dispatch(loginFunc(status));
+      dispatch(loginFunc(status));
     } else {
       onFinishFailed();
     }
@@ -33,8 +33,8 @@ const Login = () => {
 
   const onFinishFailed = (errorInfo) => {
     Modal.error({
-      title: "Error",
-      content: "Innvalid Email or Password",
+      title: 'Error',
+      content: 'Innvalid Email or Password',
     });
   };
 
@@ -63,7 +63,7 @@ const Login = () => {
           rules={[
             {
               required: true,
-              message: "Please input your username!",
+              message: 'Please input your username!',
             },
           ]}
         >
@@ -76,7 +76,7 @@ const Login = () => {
           rules={[
             {
               required: true,
-              message: "Please input your password!",
+              message: 'Please input your password!',
             },
           ]}
         >
@@ -100,7 +100,7 @@ const Login = () => {
             span: 16,
           }}
         >
-          <Link to={"/Register"}>
+          <Link to={'/Register'}>
             <p>Want to register?</p>
           </Link>
           <Button type="primary" htmlType="submit">

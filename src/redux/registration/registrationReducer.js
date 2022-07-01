@@ -1,4 +1,5 @@
-import { ADD_USER } from "./registrationType";
+import { faLessThanEqual } from '@fortawesome/free-solid-svg-icons';
+import { ADD_USER, LOGIN } from './registrationType';
 
 const initialState = {
   users: [],
@@ -17,7 +18,12 @@ const registrationReducer = (state = initialState, action) => {
         ...state,
         users: tempUsers,
       };
-    // case LOGIN:
+    case LOGIN:
+      console.log(action.payload.status);
+      return {
+        ...state,
+        status: action.payload.status,
+      };
     default:
       return {
         ...state,

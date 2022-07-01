@@ -1,4 +1,4 @@
-import { ADD_USER, LOGIN } from "./registrationType";
+import { ADD_USER, LOGIN } from './registrationType';
 export const addUser = (values) => {
   return {
     type: ADD_USER,
@@ -6,6 +6,7 @@ export const addUser = (values) => {
   };
 };
 export const loginFunc = (status) => {
+  console.log(status);
   return {
     type: LOGIN,
     payload: status,
