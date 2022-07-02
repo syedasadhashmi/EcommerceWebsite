@@ -1,14 +1,17 @@
-import { ADD_USER, LOGIN } from './registrationType';
+import { ADD_USER, LOGIN, LOGOUT } from './registrationType';
 export const addUser = (values) => {
   return {
     type: ADD_USER,
     payload: values,
   };
 };
-export const loginFunc = (status) => {
-  console.log(status);
+export const loginFunc = () => {
   return {
     type: LOGIN,
-    payload: status,
+  };
+};
+export const logout = () => {
+  return {
+    type: LOGOUT,
   };
 };

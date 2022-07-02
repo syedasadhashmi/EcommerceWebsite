@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT, DELETE } from "./cartTypes";
+import { ADD_TO_CART, INCREMENT, DECREMENT, DELETE } from './cartTypes';
 
 export const addToCart = (items) => {
   return {
@@ -13,6 +13,7 @@ export const increment = (record) => {
   };
 };
 export const decrement = (record) => {
+  console.log(record);
   return {
     type: DECREMENT,
     payload: record,

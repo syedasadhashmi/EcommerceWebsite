@@ -4,9 +4,9 @@ import { Modal } from 'antd';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 import './Login.css';
 import { loginFunc } from '../redux/registration/registrationAction';
-import { useState } from 'react';
+// import { useState } from 'react';
 const Login = () => {
-  const [status, setStatus] = useState(false);
+  // const [status, setStatus] = useState(false);
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.registrationReducer);
   console.log(users);
@@ -17,9 +17,10 @@ const Login = () => {
         items.password === values.password
     );
     if (findPro) {
-      setStatus(true);
-      dispatch(loginFunc(status));
+      // setStatus(true);
+      dispatch(loginFunc());
     } else {
+      // setStatus(false);
       onFinishFailed();
     }
     // users.map((items) => {

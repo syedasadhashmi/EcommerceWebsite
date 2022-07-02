@@ -1,8 +1,9 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT, DELETE } from "./cartTypes";
+import { ADD_TO_CART, INCREMENT, DECREMENT, DELETE } from './cartTypes';
 const initialState = {
   cart: [],
   totalPrice: 0,
   totalQuantity: 0,
+  realData: [],
 };
 
 const cartReducer = (state = initialState, action) => {
@@ -85,7 +86,6 @@ const cartReducer = (state = initialState, action) => {
       index = state.cart.findIndex(
         (items) => items.id === action.payload.record.id
       );
-
       // console.log(index);
       if (findPro.quantity > 1) {
         findPro.quantity -= 1;
