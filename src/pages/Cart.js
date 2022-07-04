@@ -1,8 +1,9 @@
 // import React, { useEffect, useState } from "react";
-import { useDispatch, useSelector } from 'react-redux';
-import { increment, decrement, deleteRecord } from '../redux/cart/cartActions';
-import './Cart.css';
-import { Table, Button } from 'antd';
+import { useDispatch, useSelector } from "react-redux";
+import { increment, decrement, deleteRecord } from "../redux/cart/cartActions";
+import "./Cart.css";
+import { Table, Button } from "antd";
+import Login from "./Login";
 
 const Cart = () => {
   // const [number, setNumber] = useState(1);
@@ -10,6 +11,8 @@ const Cart = () => {
   // const { shoes } = useSelector((state) => state.productsReducer);
   const { cart } = useSelector((state) => state.cartReducer);
   console.log(cart);
+  const { status } = useSelector((state) => state.registrationReducer);
+
   // console.log(shoes);
   const dispatch = useDispatch();
   // useEffect(() => {
@@ -25,28 +28,28 @@ const Cart = () => {
 
   const columns = [
     {
-      title: 'Images',
-      dataIndex: 'img',
+      title: "Images",
+      dataIndex: "img",
       render: (e) => <img src={e} className="cartImage" alt={e} />,
     },
     {
-      title: 'Name',
-      dataIndex: 'name',
-      key: 'name',
+      title: "Name",
+      dataIndex: "name",
+      key: "name",
       render: (text) => <h4>{text}</h4>,
     },
     {
-      title: 'Price',
-      dataIndex: 'price',
-      key: 'price',
+      title: "Price",
+      dataIndex: "price",
+      key: "price",
       render: (e) => <h4>${e}</h4>,
     },
     {
-      title: 'Quantity',
-      key: 'quantity',
-      dataIndex: 'quantity',
+      title: "Quantity",
+      key: "quantity",
+      dataIndex: "quantity",
       render: (e, record) => {
-        console.log(record, 'record');
+        console.log(record, "record");
         return (
           <>
             <Button onClick={() => dispatch(increment({ record }))}>+</Button>
@@ -57,10 +60,10 @@ const Cart = () => {
       },
     },
     {
-      title: 'Action',
-      key: 'action',
+      title: "Action",
+      key: "action",
       render: (e, record) => {
-        console.log(record.id, 'recordID');
+        console.log(record.id, "recordID");
         return (
           <>
             <Button onClick={() => dispatch(deleteRecord({ record }))}>
@@ -84,10 +87,16 @@ const Cart = () => {
   // };
   return (
     <div className="containerCart">
-      <h1>Shopping Cart</h1>
-      <Table rowKey={'id'} columns={columns} dataSource={cart} />
-      {cart.length >= 1 && (
-        <Button style={{ float: ' right', width: '300px' }}>Buy</Button>
+      {status ? (
+        <>
+          <h1>Shopping Cart</h1>
+          <Table rowKey={"id"} columns={columns} dataSource={cart} />
+          {cart.length >= 1 && (
+            <Button style={{ float: " right", width: "300px" }}>Buy</Button>
+          )}
+        </>
+      ) : (
+        <Login />
       )}
     </div>
   );

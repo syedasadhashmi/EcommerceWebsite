@@ -1,7 +1,8 @@
-import { ADD_USER, LOGIN, LOGOUT } from './registrationType';
+import { ADD_USER, LOGIN, LOGOUT } from "./registrationType";
 
 const initialState = {
   users: [],
+  regStatus: false,
   status: false,
 };
 const registrationReducer = (state = initialState, action) => {
@@ -13,9 +14,12 @@ const registrationReducer = (state = initialState, action) => {
       tempUsers.push(action.payload.values);
 
       console.log(action.payload.values);
+      let xtemp = state.regStatus;
+      xtemp = true;
       return {
         ...state,
         users: tempUsers,
+        regStatus: xtemp,
       };
     case LOGIN:
       let newStatus = state.status;
