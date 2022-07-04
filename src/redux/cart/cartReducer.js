@@ -1,4 +1,4 @@
-import { ADD_TO_CART, INCREMENT, DECREMENT, DELETE } from './cartTypes';
+import { ADD_TO_CART, INCREMENT, DECREMENT, DELETE } from "./cartTypes";
 const initialState = {
   cart: [],
   totalPrice: 0,
@@ -22,9 +22,9 @@ const cartReducer = (state = initialState, action) => {
         (items) => items.id === action.payload.items.id
       );
       const tQuantity = findPro.quantity;
-      console.log(tQuantity);
+
       tPrice = findPro.price;
-      console.log(tPrice);
+
       return {
         ...state,
         cart: tempCart,
@@ -38,7 +38,6 @@ const cartReducer = (state = initialState, action) => {
       index = state.cart.findIndex(
         (items) => items.id === action.payload.record.id
       );
-      console.log(findPro.stock);
       if (findPro.quantity < findPro.stock) {
         let xtra = findPro.price / findPro.quantity;
         findPro.quantity += 1;
@@ -65,10 +64,8 @@ const cartReducer = (state = initialState, action) => {
         (items) => items.id === action.payload.record.id
       );
       if (findPro.quantity > 1) {
-        console.log(findPro.price);
-        console.log(findPro.quantity);
         let xtra2 = findPro.price / findPro.quantity;
-        console.log(xtra2);
+
         findPro.quantity -= 1;
         state.totalQuantity = findPro.quantity;
         tQ = state.totalQuantity;

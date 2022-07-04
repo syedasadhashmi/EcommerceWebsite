@@ -1,13 +1,12 @@
 import { Link } from "react-router-dom";
 import { HomeOutlined } from "@ant-design/icons";
-import { Space, Layout, Menu, Button } from "antd";
+import { Space, Layout, Menu } from "antd";
 import { useDispatch, useSelector } from "react-redux/es/exports";
 import { logout } from "../../redux/registration/registrationAction";
 import "./Navbar.css";
 const { Header } = Layout;
 const Navbar = () => {
   const { status } = useSelector((state) => state.registrationReducer);
-  console.log(status);
   const dispatch = useDispatch();
   return (
     <Layout className="layout custom-style">
@@ -49,13 +48,6 @@ const Navbar = () => {
         </Menu>
       </Header>
     </Layout>
-    // <nav>
-    //   <h1>Shoes.com</h1>
-    //   <div className="links">
-    //     <Link to="/Login">Login</Link>
-    //     <Link to="/Register">Register</Link>
-    //   </div>
-    // </nav>
   );
 };
 export default Navbar;

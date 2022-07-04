@@ -4,39 +4,19 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import { addUser } from "../redux/registration/registrationAction";
 import Login from "./Login";
-// import { useState } from "react";
 import "./Login.css";
 const Register = () => {
   const { regStatus } = useSelector((state) => state.registrationReducer);
-
   const dispatch = useDispatch();
-  // const [emailAddress, setEmailAddress] = useState("");
-  // const [username, setUsername] = useState("");
-  // const [password, setPassword] = useState("");
-
-  // const emailAddressHandler = (e) => {
-  //   setEmailAddress(e.target.value);
-  // };
-  // const usernameHandler = (e) => {
-  //   setUsername(e.target.value);
-  // };
-  // const passwordHandler = (e) => {
-  //   setPassword(e.target.value);
-  // };
-
   const onFinish = (values) => {
     if (
       values.emailAddress.trim().includes("@") &&
       values.password.trim().length > 7
     ) {
       dispatch(addUser({ values }));
-      // values.username = " ";
-      // values.emailAddress = " ";
-      // values.password = " ";
     } else {
       onFinishFailed();
     }
-    console.log(values);
   };
 
   const onFinishFailed = (errorInfo) => {

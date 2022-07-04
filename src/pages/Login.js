@@ -5,15 +5,12 @@ import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import "./Login.css";
 import { loginFunc } from "../redux/registration/registrationAction";
 import Home from "./Home";
-// import { useState } from 'react';
+
 const Login = () => {
-  // const [status, setStatus] = useState(false);
   const dispatch = useDispatch();
   const { users } = useSelector((state) => state.registrationReducer);
   const { status } = useSelector((state) => state.registrationReducer);
-  console.log(status);
 
-  console.log(users);
   const onFinish = (values) => {
     const findPro = users.find(
       (items) =>
@@ -21,19 +18,10 @@ const Login = () => {
         items.password === values.password
     );
     if (findPro) {
-      // setStatus(true);
       dispatch(loginFunc());
     } else {
-      // setStatus(false);
       onFinishFailed();
     }
-    // users.map((items) => {
-    //   if (items.emailAddress === values.username) {
-    //     console.log("match");
-    //   } else {
-    //     console.log("not match");
-    //   }
-    // });
   };
 
   const onFinishFailed = (errorInfo) => {

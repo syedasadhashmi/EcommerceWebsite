@@ -6,14 +6,11 @@ const initialState = {
   status: false,
 };
 const registrationReducer = (state = initialState, action) => {
-  //   let findUser;
   let tempUsers;
   switch (action.type) {
     case ADD_USER:
       tempUsers = state.users;
       tempUsers.push(action.payload.values);
-
-      console.log(action.payload.values);
       let xtemp = state.regStatus;
       xtemp = true;
       return {
