@@ -61,9 +61,9 @@ const Cart = () => {
         <div className="containerCart">
           <h1>Shopping Cart</h1>
           <Table rowKey={"id"} columns={columns} dataSource={cart} />
-          {cart.length >= 1 && (
+          {/* {cart.length >= 1 && (
             <Button style={{ float: " right", width: "300px" }}>Buy</Button>
-          )}
+          )} */}
         </div>
       ) : (
         <Login />
